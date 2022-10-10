@@ -52,7 +52,10 @@ class HistoricDataHandler(DataHandler):
         self.warmup_period = settings.DATA_WARMUP_PERIOD
 
         self._parse_pystore(store)
-
+        
+        
+    # For currencies
+    # ie: ETHUSD -> ETH and USD
     def _split_symbol(self, symbol, source=None):
         if source is None:
             source, symbol = h.split_symbol(symbol)
