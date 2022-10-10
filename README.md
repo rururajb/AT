@@ -9,7 +9,17 @@ There are several modules:
 * BrokerDataHandler
 * Backtest
 
-Most modules have a specific function that execute the class.
+### Backtest
+
+File that combines all of the above modules.
+
+Essentially runs through the DataHandler.__iter__() function. The DataHandler.__iter__() function, takes next(data), (In other words the next row/bar of data) and cocatenates it to the currect data. Backtester then updates the portfolio and executes the Strategy.on_data() which decides whether to buy or sell.
+
+If Strategy wants to buy or sell something, it executes the RiskHandler.on_signal().
+
+The RiskHandler decides how much to buy or sell (position sizing) and then calls the Broker.on_order(). The Broker then executes the order.
+
+Once the broker has executed the order it calls Portfolio.on_fill() to update the current assets.
 
 ### Data Handler
 
@@ -47,19 +57,11 @@ Also this is where slippage would be generated (if doing a historical backtest)
 
 on_order()
 
+### Events 
 
-### Backtest
+Events are the signals that given to the backtester to let it know that new data has been added.
 
-File that combines all of the above modules.
+There are two event types which can trigger. SENTIMENT and BAR. SENTIMENT isn't completely implemented, but essentially it just scrapes twiiter too see how people are feeling about an asset.
 
-Essentially runs through the DataHandler.__iter__() function.
-
-Each heartbeat/loop of datahandler results in a new bar event. The bar event is sent to portfolio to update the holdings. Then the event is sent to strategy to create decide whether to buy or not.
-
-Strategy then executes the RiskHandler.on_signal()
-
-The RiskHandler calls the Broker.on_order(). The Broker then executes the order.
-
-Once the broker has executed the order it calls Portfolio.on_fill() to update the current assets.
-
+Most modules have a specific function that execute the class.
 
