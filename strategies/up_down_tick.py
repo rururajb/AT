@@ -2,6 +2,13 @@ from .strategy import Strategy
 
 
 class UpDownTick(Strategy):
+    """
+    Super simple strategy. If the paramenter is set to TREND the if the 
+    stock goes up then it sends a LONG signal, if it goes down then it 
+    send a SHORT signal.
+
+    The opposite happens if the parameter is set to MR or mean reversion.
+    """
     type_ = "BAR"
 
     def __init__(self, method="TREND"):
