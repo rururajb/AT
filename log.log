@@ -264,7 +264,7 @@ label 59:
 
 DEBUG:numba.core.ssa:================================================================================
 DEBUG:numba.core.ssa:==== SSA block analysis pass on 0
-DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001E0A6ED9220>
+DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001FFF655A040>
 DEBUG:numba.core.ssa:on stmt: indata = arg(0, name=indata)
 DEBUG:numba.core.ssa:on stmt: outdata = arg(1, name=outdata)
 DEBUG:numba.core.ssa:on stmt: factor = arg(2, name=factor)
@@ -276,61 +276,61 @@ DEBUG:numba.core.ssa:on stmt: $12get_iter.5 = getiter(value=$10call_function.4)
 DEBUG:numba.core.ssa:on stmt: $phi14.0 = $12get_iter.5
 DEBUG:numba.core.ssa:on stmt: jump 14
 DEBUG:numba.core.ssa:==== SSA block analysis pass on 14
-DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001E0A6ED9220>
+DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001FFF655A040>
 DEBUG:numba.core.ssa:on stmt: $14for_iter.1 = iternext(value=$phi14.0)
 DEBUG:numba.core.ssa:on stmt: $14for_iter.2 = pair_first(value=$14for_iter.1)
 DEBUG:numba.core.ssa:on stmt: $14for_iter.3 = pair_second(value=$14for_iter.1)
 DEBUG:numba.core.ssa:on stmt: $phi16.1 = $14for_iter.2
 DEBUG:numba.core.ssa:on stmt: branch $14for_iter.3, 16, 58
 DEBUG:numba.core.ssa:==== SSA block analysis pass on 16
-DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001E0A6ED9220>
+DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001FFF655A040>
 DEBUG:numba.core.ssa:on stmt: i = $phi16.1
 DEBUG:numba.core.ssa:on stmt: $22binary_subscr.4 = getitem(value=indata, index=i)
 DEBUG:numba.core.ssa:on stmt: $24load_global.5 = global(nat: -9223372036854775808)
 DEBUG:numba.core.ssa:on stmt: $26compare_op.6 = $22binary_subscr.4 == $24load_global.5
 DEBUG:numba.core.ssa:on stmt: branch $26compare_op.6, 30, 40
 DEBUG:numba.core.ssa:==== SSA block analysis pass on 30
-DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001E0A6ED9220>
+DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001FFF655A040>
 DEBUG:numba.core.ssa:on stmt: $30load_global.1 = global(nat: -9223372036854775808)
 DEBUG:numba.core.ssa:on stmt: outdata[i] = $30load_global.1
 DEBUG:numba.core.ssa:on stmt: jump 59
 DEBUG:numba.core.ssa:==== SSA block analysis pass on 40
-DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001E0A6ED9220>
+DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001FFF655A040>
 DEBUG:numba.core.ssa:on stmt: $44binary_subscr.3 = getitem(value=indata, index=i)
 DEBUG:numba.core.ssa:on stmt: $48binary_multiply.5 = $44binary_subscr.3 * factor
 DEBUG:numba.core.ssa:on stmt: outdata[i] = $48binary_multiply.5
 DEBUG:numba.core.ssa:on stmt: jump 59
 DEBUG:numba.core.ssa:==== SSA block analysis pass on 58
-DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001E0A6ED9220>
+DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001FFF655A040>
 DEBUG:numba.core.ssa:on stmt: $const58.0 = const(NoneType, None)
 DEBUG:numba.core.ssa:on stmt: $60return_value.1 = cast(value=$const58.0)
 DEBUG:numba.core.ssa:on stmt: return $60return_value.1
 DEBUG:numba.core.ssa:==== SSA block analysis pass on 59
-DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001E0A6ED9220>
+DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001FFF655A040>
 DEBUG:numba.core.ssa:on stmt: jump 14
 DEBUG:numba.core.ssa:defs defaultdict(<class 'list'>,
-            {'$10call_function.4': [<numba.core.ir.Assign object at 0x000001E0A6ED9F70>],
-             '$12get_iter.5': [<numba.core.ir.Assign object at 0x000001E0A6EE5100>],
-             '$14for_iter.1': [<numba.core.ir.Assign object at 0x000001E0A6EC7FA0>],
-             '$14for_iter.2': [<numba.core.ir.Assign object at 0x000001E0A6EC70D0>],
-             '$14for_iter.3': [<numba.core.ir.Assign object at 0x000001E0A6EC7D60>],
-             '$22binary_subscr.4': [<numba.core.ir.Assign object at 0x000001E0A6EE5730>],
-             '$24load_global.5': [<numba.core.ir.Assign object at 0x000001E0A6EE58B0>],
-             '$26compare_op.6': [<numba.core.ir.Assign object at 0x000001E0A6EE5A30>],
-             '$2load_global.0': [<numba.core.ir.Assign object at 0x000001E0A6ED99A0>],
-             '$30load_global.1': [<numba.core.ir.Assign object at 0x000001E0A6EE5C70>],
-             '$44binary_subscr.3': [<numba.core.ir.Assign object at 0x000001E0A6EEC430>],
-             '$48binary_multiply.5': [<numba.core.ir.Assign object at 0x000001E0A6EEC6D0>],
-             '$4load_global.1': [<numba.core.ir.Assign object at 0x000001E0A6ED9B20>],
-             '$60return_value.1': [<numba.core.ir.Assign object at 0x000001E0A6EECC70>],
-             '$8call_function.3': [<numba.core.ir.Assign object at 0x000001E0A6ED9DF0>],
-             '$const58.0': [<numba.core.ir.Assign object at 0x000001E0A6EECAF0>],
-             '$phi14.0': [<numba.core.ir.Assign object at 0x000001E0A6ED9460>],
-             '$phi16.1': [<numba.core.ir.Assign object at 0x000001E0A6EC7B80>],
-             'factor': [<numba.core.ir.Assign object at 0x000001E0A6ED9820>],
-             'i': [<numba.core.ir.Assign object at 0x000001E0A6EE5340>],
-             'indata': [<numba.core.ir.Assign object at 0x000001E0A6ED95E0>],
-             'outdata': [<numba.core.ir.Assign object at 0x000001E0A6ED9700>]})
+            {'$10call_function.4': [<numba.core.ir.Assign object at 0x000001FFF6554430>],
+             '$12get_iter.5': [<numba.core.ir.Assign object at 0x000001FFF6554580>],
+             '$14for_iter.1': [<numba.core.ir.Assign object at 0x000001FFF65548E0>],
+             '$14for_iter.2': [<numba.core.ir.Assign object at 0x000001FFF6554A00>],
+             '$14for_iter.3': [<numba.core.ir.Assign object at 0x000001FFF6554B20>],
+             '$22binary_subscr.4': [<numba.core.ir.Assign object at 0x000001FFF655A1C0>],
+             '$24load_global.5': [<numba.core.ir.Assign object at 0x000001FFF655A340>],
+             '$26compare_op.6': [<numba.core.ir.Assign object at 0x000001FFF655A4C0>],
+             '$2load_global.0': [<numba.core.ir.Assign object at 0x000001FFF6532E20>],
+             '$30load_global.1': [<numba.core.ir.Assign object at 0x000001FFF655A700>],
+             '$44binary_subscr.3': [<numba.core.ir.Assign object at 0x000001FFF655AE80>],
+             '$48binary_multiply.5': [<numba.core.ir.Assign object at 0x000001FFF6560160>],
+             '$4load_global.1': [<numba.core.ir.Assign object at 0x000001FFF6532FA0>],
+             '$60return_value.1': [<numba.core.ir.Assign object at 0x000001FFF6560700>],
+             '$8call_function.3': [<numba.core.ir.Assign object at 0x000001FFF65542B0>],
+             '$const58.0': [<numba.core.ir.Assign object at 0x000001FFF6560580>],
+             '$phi14.0': [<numba.core.ir.Assign object at 0x000001FFF6554130>],
+             '$phi16.1': [<numba.core.ir.Assign object at 0x000001FFF65547F0>],
+             'factor': [<numba.core.ir.Assign object at 0x000001FFF6532CA0>],
+             'i': [<numba.core.ir.Assign object at 0x000001FFF6554DC0>],
+             'indata': [<numba.core.ir.Assign object at 0x000001FFF6532A60>],
+             'outdata': [<numba.core.ir.Assign object at 0x000001FFF6532B80>]})
 DEBUG:numba.core.ssa:SSA violators set()
 DEBUG:numba.core.ssa:-----------------------------------AFTER SSA------------------------------------
 DEBUG:numba.core.ssa:label 0:
@@ -419,17 +419,17 @@ DEBUG:numba.core.ssa:label 0:
 
 DEBUG:numba.core.ssa:================================================================================
 DEBUG:numba.core.ssa:==== SSA block analysis pass on 0
-DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001E0A709A7F0>
+DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001FFF6748DC0>
 DEBUG:numba.core.ssa:on stmt: data = arg(0, name=data)
 DEBUG:numba.core.ssa:on stmt: $2load_global.0 = global(__numba_cls_: <class 'numba.experimental.jitclass.base.NumpyIO'>)
 DEBUG:numba.core.ssa:on stmt: $6call_function.2 = call $2load_global.0(data, func=$2load_global.0, args=[Var(data, <string>:3)], kws=(), vararg=None)
 DEBUG:numba.core.ssa:on stmt: $8return_value.3 = cast(value=$6call_function.2)
 DEBUG:numba.core.ssa:on stmt: return $8return_value.3
 DEBUG:numba.core.ssa:defs defaultdict(<class 'list'>,
-            {'$2load_global.0': [<numba.core.ir.Assign object at 0x000001E0A709AFA0>],
-             '$6call_function.2': [<numba.core.ir.Assign object at 0x000001E0A709C2B0>],
-             '$8return_value.3': [<numba.core.ir.Assign object at 0x000001E0A709C400>],
-             'data': [<numba.core.ir.Assign object at 0x000001E0A709AE20>]})
+            {'$2load_global.0': [<numba.core.ir.Assign object at 0x000001FFF674D970>],
+             '$6call_function.2': [<numba.core.ir.Assign object at 0x000001FFF674DC40>],
+             '$8return_value.3': [<numba.core.ir.Assign object at 0x000001FFF674DD90>],
+             'data': [<numba.core.ir.Assign object at 0x000001FFF674D7F0>]})
 DEBUG:numba.core.ssa:SSA violators set()
 DEBUG:numba.core.ssa:-----------------------------------AFTER SSA------------------------------------
 DEBUG:numba.core.ssa:label 0:
@@ -520,7 +520,7 @@ DEBUG:numba.core.ssa:label 0:
 
 DEBUG:numba.core.ssa:================================================================================
 DEBUG:numba.core.ssa:==== SSA block analysis pass on 0
-DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001E0A709CD30>
+DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001FFF6750F70>
 DEBUG:numba.core.ssa:on stmt: self = arg(0, name=self)
 DEBUG:numba.core.ssa:on stmt: data = arg(1, name=data)
 DEBUG:numba.core.ssa:on stmt: (self).data = data
@@ -532,12 +532,12 @@ DEBUG:numba.core.ssa:on stmt: $const22.7 = const(NoneType, None)
 DEBUG:numba.core.ssa:on stmt: $24return_value.8 = cast(value=$const22.7)
 DEBUG:numba.core.ssa:on stmt: return $24return_value.8
 DEBUG:numba.core.ssa:defs defaultdict(<class 'list'>,
-            {'$10load_attr.3': [<numba.core.ir.Assign object at 0x000001E0A709A040>],
-             '$24return_value.8': [<numba.core.ir.Assign object at 0x000001E0A70AD7C0>],
-             '$const16.5': [<numba.core.ir.Assign object at 0x000001E0A70AD2E0>],
-             '$const22.7': [<numba.core.ir.Assign object at 0x000001E0A70AD640>],
-             'data': [<numba.core.ir.Assign object at 0x000001E0A7094E50>],
-             'self': [<numba.core.ir.Assign object at 0x000001E0A7094970>]})
+            {'$10load_attr.3': [<numba.core.ir.Assign object at 0x000001FFF674D280>],
+             '$24return_value.8': [<numba.core.ir.Assign object at 0x000001FFF67584F0>],
+             '$const16.5': [<numba.core.ir.Assign object at 0x000001FFF6748940>],
+             '$const22.7': [<numba.core.ir.Assign object at 0x000001FFF6758400>],
+             'data': [<numba.core.ir.Assign object at 0x000001FFF6750580>],
+             'self': [<numba.core.ir.Assign object at 0x000001FFF6750670>]})
 DEBUG:numba.core.ssa:SSA violators set()
 DEBUG:numba.core.ssa:-----------------------------------AFTER SSA------------------------------------
 DEBUG:numba.core.ssa:label 0:
@@ -594,15 +594,15 @@ DEBUG:numba.core.ssa:label 0:
 
 DEBUG:numba.core.ssa:================================================================================
 DEBUG:numba.core.ssa:==== SSA block analysis pass on 0
-DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001E0A7191BB0>
+DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001FFF6812F10>
 DEBUG:numba.core.ssa:on stmt: __numba_self_ = arg(0, name=__numba_self_)
 DEBUG:numba.core.ssa:on stmt: $4load_attr.1 = getattr(value=__numba_self_, attr=data)
 DEBUG:numba.core.ssa:on stmt: $6return_value.2 = cast(value=$4load_attr.1)
 DEBUG:numba.core.ssa:on stmt: return $6return_value.2
 DEBUG:numba.core.ssa:defs defaultdict(<class 'list'>,
-            {'$4load_attr.1': [<numba.core.ir.Assign object at 0x000001E0A7191910>],
-             '$6return_value.2': [<numba.core.ir.Assign object at 0x000001E0A7191A90>],
-             '__numba_self_': [<numba.core.ir.Assign object at 0x000001E0A7191670>]})
+            {'$4load_attr.1': [<numba.core.ir.Assign object at 0x000001FFF6812850>],
+             '$6return_value.2': [<numba.core.ir.Assign object at 0x000001FFF68129D0>],
+             '__numba_self_': [<numba.core.ir.Assign object at 0x000001FFF68125B0>]})
 DEBUG:numba.core.ssa:SSA violators set()
 DEBUG:numba.core.ssa:-----------------------------------AFTER SSA------------------------------------
 DEBUG:numba.core.ssa:label 0:
@@ -653,15 +653,15 @@ DEBUG:numba.core.ssa:label 0:
 
 DEBUG:numba.core.ssa:================================================================================
 DEBUG:numba.core.ssa:==== SSA block analysis pass on 0
-DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001E0A71D74F0>
+DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001FFF682FDC0>
 DEBUG:numba.core.ssa:on stmt: __numba_self_ = arg(0, name=__numba_self_)
 DEBUG:numba.core.ssa:on stmt: $4load_attr.1 = getattr(value=__numba_self_, attr=loc)
 DEBUG:numba.core.ssa:on stmt: $6return_value.2 = cast(value=$4load_attr.1)
 DEBUG:numba.core.ssa:on stmt: return $6return_value.2
 DEBUG:numba.core.ssa:defs defaultdict(<class 'list'>,
-            {'$4load_attr.1': [<numba.core.ir.Assign object at 0x000001E0A712E040>],
-             '$6return_value.2': [<numba.core.ir.Assign object at 0x000001E0A712E220>],
-             '__numba_self_': [<numba.core.ir.Assign object at 0x000001E0A712E700>]})
+            {'$4load_attr.1': [<numba.core.ir.Assign object at 0x000001FFF68387F0>],
+             '$6return_value.2': [<numba.core.ir.Assign object at 0x000001FFF6838970>],
+             '__numba_self_': [<numba.core.ir.Assign object at 0x000001FFF6838550>]})
 DEBUG:numba.core.ssa:SSA violators set()
 DEBUG:numba.core.ssa:-----------------------------------AFTER SSA------------------------------------
 DEBUG:numba.core.ssa:label 0:
@@ -712,15 +712,15 @@ DEBUG:numba.core.ssa:label 0:
 
 DEBUG:numba.core.ssa:================================================================================
 DEBUG:numba.core.ssa:==== SSA block analysis pass on 0
-DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001E0A72157C0>
+DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001FFF6871C10>
 DEBUG:numba.core.ssa:on stmt: __numba_self_ = arg(0, name=__numba_self_)
 DEBUG:numba.core.ssa:on stmt: $4load_attr.1 = getattr(value=__numba_self_, attr=len)
 DEBUG:numba.core.ssa:on stmt: $6return_value.2 = cast(value=$4load_attr.1)
 DEBUG:numba.core.ssa:on stmt: return $6return_value.2
 DEBUG:numba.core.ssa:defs defaultdict(<class 'list'>,
-            {'$4load_attr.1': [<numba.core.ir.Assign object at 0x000001E0A7215520>],
-             '$6return_value.2': [<numba.core.ir.Assign object at 0x000001E0A72156A0>],
-             '__numba_self_': [<numba.core.ir.Assign object at 0x000001E0A7215280>]})
+            {'$4load_attr.1': [<numba.core.ir.Assign object at 0x000001FFF6888A30>],
+             '$6return_value.2': [<numba.core.ir.Assign object at 0x000001FFF6888BB0>],
+             '__numba_self_': [<numba.core.ir.Assign object at 0x000001FFF6888790>]})
 DEBUG:numba.core.ssa:SSA violators set()
 DEBUG:numba.core.ssa:-----------------------------------AFTER SSA------------------------------------
 DEBUG:numba.core.ssa:label 0:
@@ -781,7 +781,7 @@ DEBUG:numba.core.ssa:label 0:
 
 DEBUG:numba.core.ssa:================================================================================
 DEBUG:numba.core.ssa:==== SSA block analysis pass on 0
-DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001E0A724C130>
+DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001FFF68272E0>
 DEBUG:numba.core.ssa:on stmt: __numba_self_ = arg(0, name=__numba_self_)
 DEBUG:numba.core.ssa:on stmt: __numba_val = arg(1, name=__numba_val)
 DEBUG:numba.core.ssa:on stmt: (__numba_self_).loc = __numba_val
@@ -789,10 +789,10 @@ DEBUG:numba.core.ssa:on stmt: $const8.2 = const(NoneType, None)
 DEBUG:numba.core.ssa:on stmt: $10return_value.3 = cast(value=$const8.2)
 DEBUG:numba.core.ssa:on stmt: return $10return_value.3
 DEBUG:numba.core.ssa:defs defaultdict(<class 'list'>,
-            {'$10return_value.3': [<numba.core.ir.Assign object at 0x000001E0A7227400>],
-             '$const8.2': [<numba.core.ir.Assign object at 0x000001E0A7227640>],
-             '__numba_self_': [<numba.core.ir.Assign object at 0x000001E0A7227940>],
-             '__numba_val': [<numba.core.ir.Assign object at 0x000001E0A7227B20>]})
+            {'$10return_value.3': [<numba.core.ir.Assign object at 0x000001FFF68A8DC0>],
+             '$const8.2': [<numba.core.ir.Assign object at 0x000001FFF68A8C40>],
+             '__numba_self_': [<numba.core.ir.Assign object at 0x000001FFF68A86A0>],
+             '__numba_val': [<numba.core.ir.Assign object at 0x000001FFF68A87C0>]})
 DEBUG:numba.core.ssa:SSA violators set()
 DEBUG:numba.core.ssa:-----------------------------------AFTER SSA------------------------------------
 DEBUG:numba.core.ssa:label 0:
@@ -1070,7 +1070,7 @@ label 59:
 
 DEBUG:numba.core.ssa:================================================================================
 DEBUG:numba.core.ssa:==== SSA block analysis pass on 0
-DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001E0A7207E80>
+DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001FFF68DC9A0>
 DEBUG:numba.core.ssa:on stmt: indata = arg(0, name=indata)
 DEBUG:numba.core.ssa:on stmt: outdata = arg(1, name=outdata)
 DEBUG:numba.core.ssa:on stmt: factor = arg(2, name=factor)
@@ -1082,61 +1082,61 @@ DEBUG:numba.core.ssa:on stmt: $12get_iter.5 = getiter(value=$10call_function.4)
 DEBUG:numba.core.ssa:on stmt: $phi14.0 = $12get_iter.5
 DEBUG:numba.core.ssa:on stmt: jump 14
 DEBUG:numba.core.ssa:==== SSA block analysis pass on 14
-DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001E0A7207E80>
+DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001FFF68DC9A0>
 DEBUG:numba.core.ssa:on stmt: $14for_iter.1 = iternext(value=$phi14.0)
 DEBUG:numba.core.ssa:on stmt: $14for_iter.2 = pair_first(value=$14for_iter.1)
 DEBUG:numba.core.ssa:on stmt: $14for_iter.3 = pair_second(value=$14for_iter.1)
 DEBUG:numba.core.ssa:on stmt: $phi16.1 = $14for_iter.2
 DEBUG:numba.core.ssa:on stmt: branch $14for_iter.3, 16, 58
 DEBUG:numba.core.ssa:==== SSA block analysis pass on 16
-DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001E0A7207E80>
+DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001FFF68DC9A0>
 DEBUG:numba.core.ssa:on stmt: i = $phi16.1
 DEBUG:numba.core.ssa:on stmt: $22binary_subscr.4 = getitem(value=indata, index=i)
 DEBUG:numba.core.ssa:on stmt: $24load_global.5 = global(nat: -9223372036854775808)
 DEBUG:numba.core.ssa:on stmt: $26compare_op.6 = $22binary_subscr.4 == $24load_global.5
 DEBUG:numba.core.ssa:on stmt: branch $26compare_op.6, 30, 40
 DEBUG:numba.core.ssa:==== SSA block analysis pass on 30
-DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001E0A7207E80>
+DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001FFF68DC9A0>
 DEBUG:numba.core.ssa:on stmt: $30load_global.1 = global(nat: -9223372036854775808)
 DEBUG:numba.core.ssa:on stmt: outdata[i] = $30load_global.1
 DEBUG:numba.core.ssa:on stmt: jump 59
 DEBUG:numba.core.ssa:==== SSA block analysis pass on 40
-DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001E0A7207E80>
+DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001FFF68DC9A0>
 DEBUG:numba.core.ssa:on stmt: $44binary_subscr.3 = getitem(value=indata, index=i)
 DEBUG:numba.core.ssa:on stmt: $48binary_multiply.5 = $44binary_subscr.3 * factor
 DEBUG:numba.core.ssa:on stmt: outdata[i] = $48binary_multiply.5
 DEBUG:numba.core.ssa:on stmt: jump 59
 DEBUG:numba.core.ssa:==== SSA block analysis pass on 58
-DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001E0A7207E80>
+DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001FFF68DC9A0>
 DEBUG:numba.core.ssa:on stmt: $const58.0 = const(NoneType, None)
 DEBUG:numba.core.ssa:on stmt: $60return_value.1 = cast(value=$const58.0)
 DEBUG:numba.core.ssa:on stmt: return $60return_value.1
 DEBUG:numba.core.ssa:==== SSA block analysis pass on 59
-DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001E0A7207E80>
+DEBUG:numba.core.ssa:Running <numba.core.ssa._GatherDefsHandler object at 0x000001FFF68DC9A0>
 DEBUG:numba.core.ssa:on stmt: jump 14
 DEBUG:numba.core.ssa:defs defaultdict(<class 'list'>,
-            {'$10call_function.4': [<numba.core.ir.Assign object at 0x000001E0A71C6FA0>],
-             '$12get_iter.5': [<numba.core.ir.Assign object at 0x000001E0A71DF130>],
-             '$14for_iter.1': [<numba.core.ir.Assign object at 0x000001E0A71DF490>],
-             '$14for_iter.2': [<numba.core.ir.Assign object at 0x000001E0A71DF5B0>],
-             '$14for_iter.3': [<numba.core.ir.Assign object at 0x000001E0A71DF6D0>],
-             '$22binary_subscr.4': [<numba.core.ir.Assign object at 0x000001E0A71DFD30>],
-             '$24load_global.5': [<numba.core.ir.Assign object at 0x000001E0A71DFEB0>],
-             '$26compare_op.6': [<numba.core.ir.Assign object at 0x000001E0A725EFD0>],
-             '$2load_global.0': [<numba.core.ir.Assign object at 0x000001E0A71C69D0>],
-             '$30load_global.1': [<numba.core.ir.Assign object at 0x000001E0A725ED90>],
-             '$44binary_subscr.3': [<numba.core.ir.Assign object at 0x000001E0A725E1F0>],
-             '$48binary_multiply.5': [<numba.core.ir.Assign object at 0x000001E0A725EC70>],
-             '$4load_global.1': [<numba.core.ir.Assign object at 0x000001E0A71C6B50>],
-             '$60return_value.1': [<numba.core.ir.Assign object at 0x000001E0A72692B0>],
-             '$8call_function.3': [<numba.core.ir.Assign object at 0x000001E0A71C6E20>],
-             '$const58.0': [<numba.core.ir.Assign object at 0x000001E0A7269130>],
-             '$phi14.0': [<numba.core.ir.Assign object at 0x000001E0A71C6790>],
-             '$phi16.1': [<numba.core.ir.Assign object at 0x000001E0A71DF3A0>],
-             'factor': [<numba.core.ir.Assign object at 0x000001E0A71C6850>],
-             'i': [<numba.core.ir.Assign object at 0x000001E0A71DF970>],
-             'indata': [<numba.core.ir.Assign object at 0x000001E0A71C65E0>],
-             'outdata': [<numba.core.ir.Assign object at 0x000001E0A71C64C0>]})
+            {'$10call_function.4': [<numba.core.ir.Assign object at 0x000001FFF68CB7F0>],
+             '$12get_iter.5': [<numba.core.ir.Assign object at 0x000001FFF68CB940>],
+             '$14for_iter.1': [<numba.core.ir.Assign object at 0x000001FFF68CBCA0>],
+             '$14for_iter.2': [<numba.core.ir.Assign object at 0x000001FFF68CBDC0>],
+             '$14for_iter.3': [<numba.core.ir.Assign object at 0x000001FFF68CBEE0>],
+             '$22binary_subscr.4': [<numba.core.ir.Assign object at 0x000001FFF68D0580>],
+             '$24load_global.5': [<numba.core.ir.Assign object at 0x000001FFF68D0700>],
+             '$26compare_op.6': [<numba.core.ir.Assign object at 0x000001FFF68D0880>],
+             '$2load_global.0': [<numba.core.ir.Assign object at 0x000001FFF68CB220>],
+             '$30load_global.1': [<numba.core.ir.Assign object at 0x000001FFF68D0AC0>],
+             '$44binary_subscr.3': [<numba.core.ir.Assign object at 0x000001FFF68D2280>],
+             '$48binary_multiply.5': [<numba.core.ir.Assign object at 0x000001FFF68D2520>],
+             '$4load_global.1': [<numba.core.ir.Assign object at 0x000001FFF68CB3A0>],
+             '$60return_value.1': [<numba.core.ir.Assign object at 0x000001FFF68D2AC0>],
+             '$8call_function.3': [<numba.core.ir.Assign object at 0x000001FFF68CB670>],
+             '$const58.0': [<numba.core.ir.Assign object at 0x000001FFF68D2940>],
+             '$phi14.0': [<numba.core.ir.Assign object at 0x000001FFF68CB4F0>],
+             '$phi16.1': [<numba.core.ir.Assign object at 0x000001FFF68CBBB0>],
+             'factor': [<numba.core.ir.Assign object at 0x000001FFF68CB0A0>],
+             'i': [<numba.core.ir.Assign object at 0x000001FFF68D01C0>],
+             'indata': [<numba.core.ir.Assign object at 0x000001FFF68BB7C0>],
+             'outdata': [<numba.core.ir.Assign object at 0x000001FFF68BBF40>]})
 DEBUG:numba.core.ssa:SSA violators set()
 DEBUG:numba.core.ssa:-----------------------------------AFTER SSA------------------------------------
 DEBUG:numba.core.ssa:label 0:
