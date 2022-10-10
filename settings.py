@@ -20,10 +20,11 @@ MODE = "backtest"
 FEES = {enums.exchanges.BINANCE: D(0.001)}
 
 SYMBOLS = {
+    # Exchange data
     "Binance": [
-        # "ETHUSDT",
+        # Symbols in exchange that you want to trade
+        # Symbols must have a similarily named csv file
         "BTCUSDT",
-        # "Binance-XRPUSDT",
     ],
     # "Twitter": [
     #     "BTC",
@@ -36,12 +37,19 @@ TRADING_INTERVAL: "1m"
 # ----------------
 # | Data Handler |
 # ----------------
+# Warmup period is how many the starting point for the data. Everything in the
+# warmup period can be used as data right from the start.
 DATA_WARMUP_PERIOD = 500
 DATA_DIRECTORY = r"C:\Users\evanh\Projects\AT\Data"
 
-# Strategy
+# ------------
+# | Strategy |
+# ------------
+
+# Strategy you want to use. Backtesting uses getattr to read the strategy 
+# provided that their is a equivalently named strategy in the strategy folder.
 STRATEGY = "UpDownTick"
-PARAMETERS = {"method": "TREND"} #{"BollingerBands": ("TREND", 24), "method": "all"}
+PARAMETERS = {"method": "TREND"}
 
 # ----------------
 # | Risk Handler |
