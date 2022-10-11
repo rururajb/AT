@@ -9,6 +9,8 @@ This program currently doesn't work. I created it in 2020, and I don't have the 
 * [The historical data handler](https://github.com/evanwporter/AT/blob/main/DataHandler/historic_data.py)
 * [Backtester](https://github.com/evanwporter/AT/blob/main/backtest.py) (the engine of the program)
 
+
+## MECHANICS
 There are several modules:
 
 * Data Handler
