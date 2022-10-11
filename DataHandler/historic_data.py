@@ -29,7 +29,9 @@ class HistoricDataHandler(DataHandler):
         with open(r"C:\Users\evanh\Projects\AT\AT\symbol_info.json") as info:
             self.symbol_info = json.load(info)
 
+            
         # PRIVATE
+        
         self.symbol_data = {}
         self.trade_data = {}
         self.total_data = {}
@@ -46,7 +48,10 @@ class HistoricDataHandler(DataHandler):
             for s in symbol
         )
 
+        
         # PUBLIC
+        
+        # All the data we have access too
         self.latest_symbol_data = {symbol: None for symbol in self.symbols}
 
         self.warmup_period = settings.DATA_WARMUP_PERIOD
@@ -72,17 +77,19 @@ class HistoricDataHandler(DataHandler):
             data_source: list(symbol for symbol in symbols)
             for data_source, symbols in settings.SYMBOLS.items()
         }
-        print(nested_symbols)
+        
         for data_source, symbols in nested_symbols.items():
             source = store.collection(data_source)
             for symbol in symbols:
 
                 data = source.item(str(symbol)).to_pandas()
                 symbol = h.key(source=data_source, symbol=symbol)
-                print(self.symbols)
                 parameters = self.symbols[symbol]
-
+                
+                # Data Interval is the interval that the data is located on (ie: 1 day)
                 data_interval = parameters["Timeframe"]["Data Interval"]
+                
+                # Trade Interval is how often to run on the strategy on a symbol
                 trading_interval = parameters["Timeframe"]["Trading Interval"]
 
                 if type(data_interval) is str:
@@ -129,7 +136,9 @@ class HistoricDataHandler(DataHandler):
                 )
 
                 market_data[symbol] = OHLCV.asfreq(trading_interval)
-
+                
+                # Gets all of the unique dates
+                # This is important since some symbols may be trading on different intervals
                 self.dates = self.dates.union(market_data[symbol].index)
 
         for symbol in self.symbols:
@@ -165,10 +174,14 @@ class HistoricDataHandler(DataHandler):
     def __iter__(self):
 
         for self.size in range(len(self.dates)):
+            # BarEvent includes the timestamp, and a list of the symbols that have the relevant data open up
             bar = BarEvent(self.date)
             sentiment = SentimentEvent(self.date)
             for symbol in self.symbols:
+                
+                # Gets the bar for a symbol
                 if self.trade_data[symbol][self.size]:
+                    # Sentiment stuff
                     # if h.split_symbol(symbol)[0] == "Twitter":
                     #     self.latest_symbol_data[symbol] = self.symbol_data[symbol][
                     #         self.size
@@ -185,6 +198,8 @@ class HistoricDataHandler(DataHandler):
                             )
                         )
                     bar.symbols.append(symbol)
-
+                    
+                    
+            # Only yield Bar events if the data handler has caught up with warmup period
             if self.size >= self.warmup_period:
                 yield [bar]  # , sentiment]
