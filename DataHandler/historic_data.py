@@ -12,11 +12,11 @@ from .event import *
 from .dh import DataHandler
 from .symbol import Symbol
 
-import helper as h
+import AT.helper as h
 
-import exceptions
-import settings
-from symbols import symbols as syms
+import AT.exceptions as exceptions
+import AT.settings as settings
+from AT.symbols import symbols as syms
 
 from datetime import timedelta
 
@@ -24,72 +24,81 @@ from datetime import timedelta
 class HistoricDataHandler(DataHandler):
     def __init__(self):
 
-        store = pystore.store(settings.DATA_DIRECTORY)
+        # store = pystore.store(settings.DATA_DIRECTORY)
 
-        with open(r"C:\Users\evanh\Projects\AT\AT\symbol_info.json") as info:
+        with open(r".\AT\symbol_info.json") as info:
             self.symbol_info = json.load(info)
 
-            
-        # PRIVATE
-        
+        # -----------
+        # | Private |
+        # -----------
         self.symbol_data = {}
         self.trade_data = {}
         self.total_data = {}
 
+
+        # ----------
+        # | Public |
+        # ----------
+        # Creates a guide for each symbol data
+        # The guide tells you in which row to find Open, Close, High, Low, ect.
+        # Also it has information on the intervals
+        # This information is pulled from the symbols file in the main package.
         self.symbols = {
             Symbol(*self._split_symbol(symbol, source)): syms[source][symbol]
             for source, symbols in settings.SYMBOLS.items()
             for symbol in symbols
         }
 
+        # Unique values
+        # ie: (USDT, BTC, XRP) if trading with BTCUSDT & XRPUSDT
         self.split_symbols = set(
             s
             for symbol in self.symbols
             for s in symbol
         )
 
-        
-        # PUBLIC
-        
-        # All the data we have access too
+        # This is the "known data"
         self.latest_symbol_data = {symbol: None for symbol in self.symbols}
 
+        # Warmup period is how many the starting point for the data. Everything in the
+        # warmup period can be used as data right from the start.
         self.warmup_period = settings.DATA_WARMUP_PERIOD
 
-        self._parse_pystore(store)
-        
-        
-    # For currencies
-    # ie: ETHUSD -> ETH and USD
+        self._parse_pystore()
+
     def _split_symbol(self, symbol, source=None):
         if source is None:
             source, symbol = h.split_symbol(symbol)
+        
         base = self.symbol_info[symbol]["baseAsset"]
         quote = self.symbol_info[symbol]["quoteAsset"]
 
         return source, base, quote
 
-    def _parse_pystore(self, store):
+    def _parse_pystore(self):
         self.dates = pd.Index([])
         market_data = {}
 
+        # Data Source : [symbol1, symbol2, etc.]
+        # ie: Binance : [BTCUSD]
         nested_symbols = {
             data_source: list(symbol for symbol in symbols)
             for data_source, symbols in settings.SYMBOLS.items()
         }
-        
+
+        print(nested_symbols)
+
         for data_source, symbols in nested_symbols.items():
-            source = store.collection(data_source)
+            # source = store.collection(data_source)
             for symbol in symbols:
 
-                data = source.item(str(symbol)).to_pandas()
+                data = pd.read_csv("%s\\%s-%s.csv" % (settings.DATA_DIRECTORY, data_source, str(symbol)), index_col=0)
                 symbol = h.key(source=data_source, symbol=symbol)
+
                 parameters = self.symbols[symbol]
-                
-                # Data Interval is the interval that the data is located on (ie: 1 day)
+
                 data_interval = parameters["Timeframe"]["Data Interval"]
-                
-                # Trade Interval is how often to run on the strategy on a symbol
                 trading_interval = parameters["Timeframe"]["Trading Interval"]
 
                 if type(data_interval) is str:
@@ -136,9 +145,7 @@ class HistoricDataHandler(DataHandler):
                 )
 
                 market_data[symbol] = OHLCV.asfreq(trading_interval)
-                
-                # Gets all of the unique dates
-                # This is important since some symbols may be trading on different intervals
+
                 self.dates = self.dates.union(market_data[symbol].index)
 
         for symbol in self.symbols:
@@ -174,14 +181,10 @@ class HistoricDataHandler(DataHandler):
     def __iter__(self):
 
         for self.size in range(len(self.dates)):
-            # BarEvent includes the timestamp, and a list of the symbols that have the relevant data open up
             bar = BarEvent(self.date)
             sentiment = SentimentEvent(self.date)
             for symbol in self.symbols:
-                
-                # Gets the bar for a symbol
                 if self.trade_data[symbol][self.size]:
-                    # Sentiment stuff
                     # if h.split_symbol(symbol)[0] == "Twitter":
                     #     self.latest_symbol_data[symbol] = self.symbol_data[symbol][
                     #         self.size
@@ -191,6 +194,7 @@ class HistoricDataHandler(DataHandler):
                     if self.latest_symbol_data[symbol] is None:
                         self.latest_symbol_data[symbol] = next(self.symbol_data[symbol])
                     else:
+                        # Get the latest bar and adds it to the table of bars.
                         self.latest_symbol_data[symbol] = np.concatenate(
                             (
                                 self.latest_symbol_data[symbol],
@@ -198,8 +202,6 @@ class HistoricDataHandler(DataHandler):
                             )
                         )
                     bar.symbols.append(symbol)
-                    
-                    
-            # Only yield Bar events if the data handler has caught up with warmup period
+
             if self.size >= self.warmup_period:
                 yield [bar]  # , sentiment]
