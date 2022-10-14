@@ -1,9 +1,9 @@
-from DataHandler import HistoricDataHandler, LiveDataHandler
-from Portfolio import Portfolio
-from Risk import SimpleRiskHandler
-from Broker import SimulateExecutionHandler
-import Strategies
-from Metrics.metrics import Metrics
+from AT.DataHandler import HistoricDataHandler, LiveDataHandler
+from AT.Portfolio import Portfolio
+from AT.Risk import SimpleRiskHandler
+from AT.Broker import SimulateExecutionHandler
+from AT import strategies
+from AT.Metrics.metrics import Metrics
 
 import pandas as pd
 import numpy as np
@@ -15,19 +15,21 @@ from tqdm import tqdm
 from itertools import product, repeat
 import multiprocessing as mp
 
-import helper as h
+import AT.helper as h
 
-import settings
-
-logging.basicConfig(filename="log.log", filemode="w", level=logging.DEBUG)
+from AT import settings
 
 
 class Backtester:
     def __init__(self):
+
+        #Initialize modules
         if settings.MODE == "backtest":
+            # change since this only works in jupyter notebook
+            # self.dh = data_handler
             self.dh = HistoricDataHandler()
-        else:  # settings.MODE == "paper" or settings.MODE == "live"
-            self.dh = LiveDataHandler()
+#         else:  # settings.MODE == "paper" or settings.MODE == "live"
+#             self.dh = LiveDataHandler()
         
         self.portfolio = Portfolio(self.dh)
         self.broker = SimulateExecutionHandler(dh=self.dh, portfolio=self.portfolio)
@@ -37,9 +39,9 @@ class Backtester:
 
         # Load strategy module from string
         self.strategy = (
-            getattr(Strategies, settings.STRATEGY)()
+            getattr(strategies, settings.STRATEGY)()
             if settings.PARAMETERS is None
-            else getattr(Strategies, settings.STRATEGY)(**settings.PARAMETERS)
+            else getattr(strategies, settings.STRATEGY)(**settings.PARAMETERS)
         )
         self.strategy.initialize(dh=self.dh, rh=self.rh)
 
@@ -56,7 +58,7 @@ class Backtester:
         except KeyboardInterrupt:
             print(pd.DataFrame(self.portfolio.holdings))
             self.dh.except_KI()
-
+            
     @classmethod
     def reinitialize(cls):
         return cls(None)
@@ -102,14 +104,14 @@ class Backtester:
         returns[idx] = m.total_ret
 
     def metrics(self):
-        m = Metrics(portfolio=self.portfolio, dh=self.dh)
+        # m = Metrics(portfolio=self.portfolio, dh=self.dh)
         # x = pd.DataFrame(self.portfolio.holdings)
         # print(x.iloc[30:40])
-        print(m)
+        print(Metrics(self.portfolio, self.dh))
 
 
-engine = Backtester()
-engine.run()
-# print(engine.portfolio.holdings)
-engine.metrics()
-# engine.optimize(strategy={"window": range(10, 60)}, metric="returns", constraint=None)
+# engine = Backtester()
+# engine.run()
+# # # print(engine.portfolio.holdings)
+# engine.metrics()
+# # engine.optimize(strategy={"window": range(10, 60)}, metric="returns", constraint=None)

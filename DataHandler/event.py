@@ -6,7 +6,7 @@ from typing import List
 @dataclass
 class BarEvent:
     type_: str  = field(init=False, default="BAR")
-    symbols: dict = field(init=False, default_factory=dict)
+    symbols: list = field(init=False, default_factory=list)
     date: Timestamp
 
 @dataclass

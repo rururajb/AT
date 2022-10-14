@@ -1,9 +1,9 @@
 import pandas as pd
 import numpy as np
 
-from .strategy import Strategy
+from AT.strategies import Strategy
 
-import talib
+# import talib
 
 import datetime as dt
 

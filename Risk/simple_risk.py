@@ -1,16 +1,20 @@
 import numpy as np
 from decimal import Decimal as D
 
-import helper as h
+import AT.helper as h
 
-import talib
-
-import enums
-
-import settings
 import logging
 
-from Broker.Fees import PercentFeeModel
+try:
+    import talib
+except ImportError:
+    logging.warning("You should install talib.")
+
+from AT import enums 
+
+from AT import settings
+
+from AT.Broker.Fees import PercentFeeModel
 
 # TODO:
 #  * Reincoporate hrp allocation
@@ -32,9 +36,6 @@ class SimpleRiskHandler:
         self.broker = broker
         self.fee_model = PercentFeeModel()
 
-        self.sls = settings.STOP_LOSSES
-        self.tps = settings.TAKE_PROFITS
-
         # Maximum Leverage Ratio
         self.MLR = settings.LEVERAGE_RATIO
         if self.MLR is not type(D):
@@ -55,6 +56,8 @@ class SimpleRiskHandler:
         self.weights = self.portfolio.weights
 
         self.weighting = settings.WEIGHTING
+        
+        logging.info("Weight Bounds: %s" % self.weight_bounds)
 
     # def _allocate_cash_buffer(self):
     #     cash_buffer = self.CB * self.total_equity
@@ -213,27 +216,43 @@ class SimpleRiskHandler:
     def _check_weights(
         self, base, quote, weight_adjustment, price, direction, debug=False
     ):
+        
+        # The weights are how much of the Total Equity are in a particular asset
+        # Weight bounds are predefined maximum weights for each asset
+        # This function checks to see if the proposed trade will go over 
+        # or under the weight bounds
+        
         weight_adjustment = weight_adjustment * 100
 
+        # Current weights
         base_weight = self.weights[base]
-        base_min_weight, base_max_weight = self.weight_bounds[base]
-
         quote_weight = self.weights[quote]
-        quote_min_weight, quote_max_weight = self.weight_bounds[quote]
 
+        # Weight Bounds
+        base_min_weight, base_max_weight = self.weight_bounds[base]
+        quote_min_weight, quote_max_weight = self.weight_bounds[quote]
+                
         if direction == "LONG":
+            # Buy/Long means increase `Base Asset` and decrease `Quote Asset`
             distance = min(
-                # Quote distance                    Base distance
-                quote_weight - quote_min_weight, base_max_weight - base_weight
+                quote_weight - quote_min_weight, # Quote distance                    
+                base_max_weight - base_weight # Base distance
             )
             if distance < weight_adjustment:
                 # Scales quanity down
                 weight_adjustment = distance
-        elif direction == "SHORT":
+                
+        elif direction == "SHORT":\
+            
+            # Sell/Short means decrease Base and increase Quote
+            
             quote_distance = quote_max_weight - quote_weight
             base_distance = base_weight - base_min_weight
+            
             distance = min(quote_distance, base_distance)
+            
             if distance < weight_adjustment:
+                # Scales quantity up
                 weight_adjustment = distance
 
         # Turn the weight adjustment into a hard quantity
@@ -257,6 +276,7 @@ class SimpleRiskHandler:
             price=price,
             direction=direction,
         )
+
         direction = self._calculate_direction(base, quantity, direction)
 
         # if direction == "SHORT":
@@ -269,20 +289,22 @@ class SimpleRiskHandler:
         #         direction=direction,
         #         debug=True,
         #     )
+
         if quantity > 0:
             id_ = h.generate_unique_id()
 
             if direction == "LONG" or direction == "SHORT":
                 stop_loss = (
                     self._set_stop_loss(symbol, price, direction, date, id_)
-                    if self.sls
+                    if settings.STOP_LOSSES
                     else None
                 )
                 profit_point = (
                     self._set_take_profit(symbol, price, direction, date, id_)
-                    if self.tps
+                    if settings.TAKE_PROFITS
                     else None
                 )
+                
             else:
                 stop_loss = None
                 profit_point = None

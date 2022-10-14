@@ -1,4 +1,4 @@
-import settings
+from AT import settings
 
 
 class SlippageModel:

@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 import numpy as np
 
-import settings
+from AT import settings
 
 import datetime as dt
 
@@ -10,14 +10,20 @@ import sys
 
 import logging
 
+from AT.DataHandler.symbol import Symbol
+
 
 class DataHandler(ABC):
     def __init__(self):
         self.symbols = settings.SYMBOLS
 
-    def get_latest_data(self, symbol, columns="Close", N=-1, dtype=None):
+    def get_latest_data(self, symbol: Symbol, columns="Close", N=-1, dtype=None):
+        
+        if not isinstance(symbol, Symbol):
+            raise TypeError("%s must be type Symbol" % symbol)
 
         data_interval = self.symbols[symbol]["Timeframe"]["Data Interval"]
+
         if type(N) is dt.timedelta:
             if N < data_interval:
                 N = data_interval
@@ -34,18 +40,18 @@ class DataHandler(ABC):
         data = self.latest_symbol_data[symbol][-N:]#, dtype=object)
 
         if type(columns) == str:
-            data = data[:, self.symbols[symbol]["Columns"][columns]]
-            if N == 1:
+            data = data[columns]#self.symbols[symbol]["Columns"][columns]]
+            if N == -1:
                 data = data[0]
 
         else:
             if dtype is not None:
                 return [
-                    data[:, self.symbols[symbol]["Columns"][column]].astype(dtype) for column in columns
+                    data[:, self.symbols[symbol]["Columns"][columns]].astype(dtype) for column in columns
                 ]
             else:
                 return [
-                    data[:, self.symbols[symbol]["Columns"][column]] for column in columns
+                    data[:, self.symbols[symbol]["Columns"][columns]] for column in columns
                 ]
 
         if dtype is not None:

@@ -1,4 +1,4 @@
-from .strategy import Strategy
+from AT.strategies import Strategy
 
 
 class UpDownTick(Strategy):

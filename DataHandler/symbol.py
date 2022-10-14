@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 
 class Symbol:
+    # Using slots is faster
+    # https://stackoverflow.com/questions/472000/usage-of-slots
     __slots__ = [
         "source",
         "_base",

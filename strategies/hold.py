@@ -1,6 +1,6 @@
-import settings
+from AT import settings
 
-from .strategy import Strategy
+from AT.strategies import Strategy
 
 class BuyAndHold(Strategy):
     def __init__(self):

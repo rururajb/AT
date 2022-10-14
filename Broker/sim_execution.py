@@ -1,6 +1,6 @@
 # from .event import OrderEvent, FillEvent
-from .orders import *
-from .Fees import SlippageModel, PercentFeeModel
+from AT.Broker.orders import *
+from AT.Broker.Fees import SlippageModel, PercentFeeModel
 
 from collections import deque
 
@@ -13,8 +13,8 @@ import datetime
 import logging
 
 # import enums
-import helper as h
-import settings
+import AT.helper as h
+from AT import settings
 
 
 class SimulateExecutionHandler:
@@ -44,13 +44,13 @@ class SimulateExecutionHandler:
             if not settings.QUIET:
                 print("Order Executed:", symbol, quantity, direction)
             
-            commission, quantity = self.fee_model(price=price, quantity=quantity, broker=broker)
+            commission, quantity = .01, .01#self.fee_model(price=price, quantity=quantity, broker=self)
 
             self.portfolio.on_fill(
                 id_=id_,
                 symbol=symbol,
                 price=price,
-                exchange=symbol.source,
+                # exchange=symbol.source,
                 fill_type=fill_type,
                 quantity=quantity,
                 direction=direction,

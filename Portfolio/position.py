@@ -2,9 +2,9 @@ from decimal import Decimal as D
 from collections import deque
 from dataclasses import dataclass, field
 
-from .trade import Trade
+# from .trade import Trade
 
-from enums import trade_type, asset_side, places
+from AT.enums import trade_type, asset_side, places
 
 
 @dataclass
@@ -52,15 +52,22 @@ class Position:
     def update_position(
         self,
         direction,
-        quantity,
+        quantity: D,
         price,
         side,
-        commission=None,
+        commission: D = None,
         slippage=None,
         date=None,
     ):
-
+        
+        if (not isinstance(quantity, D)) and (quantity is not None):
+            quantity = D(quantity)
+            
+        if (not isinstance(commission, D)) and (commission is not None):
+            commission = D(commission)
+        
         # Adjusts for cash
+        # asset_side.QUOTE == "Quote"
         if side == asset_side.QUOTE:
             self.quantity -= commission
             qp = quantity * price
