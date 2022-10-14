@@ -62,8 +62,11 @@ class SimpleRiskHandler:
             self.weight_bounds = {}
             logging.warning("You should define settings.WEIGHTS")
         
-        # Check if its empty
+        # TODO: Seperate into cash like and not cash like lists
+        # Then divide available weightings evenly
+        # Also incorporate Long Only setting
         
+        # Check if its empty
         if self.weight_bounds:
             not_cash_like_weight = ( 
                 (1 - cash_buffer) / len([s for s in self.dh.split_symbols if not h.is_cash_like(s)]) 
