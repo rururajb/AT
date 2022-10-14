@@ -110,6 +110,10 @@ class SimpleRiskHandler:
         return ((quantity * price) / (1 + settings.FEES["Binance"])) / price
 
     def _check_leverage(self, price, direction, symbol):
+        """
+        This function is mostly obsolete, as its been replaced by _check_weights().
+        """
+        
         current_holdings = self.holdings[-1]
 
         if direction == "SHORT" or direction == "SELL":
