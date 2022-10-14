@@ -55,6 +55,7 @@ class HistoricDataHandler(DataHandler):
         # Unique values
         # ie: (USDT, BTC, XRP) if trading with BTCUSDT & XRPUSDT
         self.split_symbols = set(
+            # TODO: Create a subclass of the symbol class for this
             s
             for symbol in self.symbols
             for s in symbol
