@@ -16,6 +16,8 @@ from AT import settings
 
 from AT.Broker.Fees import PercentFeeModel
 
+from AT import helper as h
+
 # TODO:
 #  * Reincoporate hrp allocation
 #  * Add more position size techniques
@@ -47,15 +49,39 @@ class SimpleRiskHandler:
             logging.warning(
                 "Cash buffer is 0. The recommended cash buffer is at least .05"
             )
-
-        cash_buffer = int(settings.CASH_BUFFER * 100)
-
-        self.weight_bounds = {"Binance-BTC": (0, 100 - cash_buffer)}
-        self.weight_bounds["Binance-USDT"] = (cash_buffer, 100)
-
+            
+        try:
+            cash_buffer = int(settings.CASH_BUFFER * 100)
+        except:
+            cash_buffer = .2
+            logging.warning("You should define settings.CASH_BUFFER") 
+        
+        try:
+            self.weight_bounds = settings.WEIGHTS
+        except ValueError: # If WEIGHTS isn't defined in settings
+            self.weight_bounds = {}
+            logging.warning("You should define settings.WEIGHTS")
+        
+        # Check if its empty
+        
+        if self.weight_bounds:
+            not_cash_like_weight = ( 
+                (1 - cash_buffer) / len([s for s in self.dh.split_symbols if not h.is_cash_like(s)]) 
+            )
+            for s in self.dh.split_symbols:
+                # TODO: Currently this will break if there are more than 1 cash like assets
+                if h.is_cash_like(s):
+                    self.weight_bounds[s] = (cash_buffer, 100)
+                else:
+                    self.weight_bounds[s] = (0, not_cash_like_weight)
+                    
+        
+        for weight in self.weight_bounds
+        
+        # Current Weights
         self.weights = self.portfolio.weights
 
-        self.weighting = settings.WEIGHTING
+#         self.weighting = settings.WEIGHTING
         
         logging.info("Weight Bounds: %s" % self.weight_bounds)
 
