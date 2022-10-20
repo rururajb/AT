@@ -8,6 +8,7 @@ import logging
 try:
     import talib
 except ImportError:
+    # talib is a pain to install
     logging.warning("You should install talib.")
 
 from AT import enums 
