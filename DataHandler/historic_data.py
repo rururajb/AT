@@ -52,6 +52,16 @@ class HistoricDataHandler(DataHandler):
             for symbol in symbols
         }
         
+        self.exchanges = set([symbol.source for symbol in self.symbols])  
+        
+        # This will be changed in the future.
+        if len(self.exchanges) > 1:
+            raise ValueError("To many exchanges. At the moment we can only trade on one exhange")
+            
+        logging.info("Trading on %s." % self.exchanges)
+            
+        logging.info("Trading %s." % self.symbols.items())
+        
         # Unique values
         # ie: (USDT, BTC, XRP) if trading with BTCUSDT & XRPUSDT
         self.split_symbols = set(
