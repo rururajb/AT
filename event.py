@@ -7,6 +7,9 @@ import helper as h
 class Event:
     pass
 
+# @dataclass generates a bunch of nice things such as __init__ and __repr__
+# https://docs.python.org/3/library/dataclasses.html
+
 @dataclass
 class MarketEvent(Event):
     type_: str = field(init=False, default='MARKET')
