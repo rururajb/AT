@@ -136,6 +136,7 @@ class SimpleRiskHandler:
         return direction
 
     def _adjust_for_commission(self, quantity, price):
+        # TODO: Expand to allow for other exchanges
         return ((quantity * price) / (1 + settings.FEES["Binance"])) / price
 
     def _check_leverage(self, price, direction, symbol):
@@ -278,7 +279,7 @@ class SimpleRiskHandler:
         elif direction == "SHORT":\
             
             # Sell/Short means decrease Base and increase Quote
-            
+            _adjust_for
             quote_distance = quote_max_weight - quote_weight
             base_distance = base_weight - base_min_weight
             
