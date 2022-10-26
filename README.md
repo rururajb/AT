@@ -4,7 +4,9 @@ A program that will take market data and then decide when to trade.
 
 ### NOTICE
 
-This program currently doesn't work. I created it in 2020, and I don't have the time to figure out what each line does. That being said I've done my best to document the most important files:
+I created the program in 2020 during my gap year.
+
+Here are the most important files in the program.
 
 * [The historical data handler](https://github.com/evanwporter/AT/blob/main/DataHandler/historic_data.py)
 * [Backtester](https://github.com/evanwporter/AT/blob/main/backtest.py) (the engine of the program)
