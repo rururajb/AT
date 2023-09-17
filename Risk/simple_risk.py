@@ -80,7 +80,7 @@ class SimpleRiskHandler:
                     self.weight_bounds[s] = (0, not_cash_like_weight)
                     
         
-        for weight in self.weight_bounds
+        #for weight in self.weight_bounds
         
         # Current Weights
         self.weights = self.portfolio.weights
