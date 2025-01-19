@@ -1,9 +1,9 @@
-from AT.DataHandler import HistoricDataHandler, LiveDataHandler
-from AT.Portfolio import Portfolio
-from AT.Risk import SimpleRiskHandler
-from AT.Broker import SimulateExecutionHandler
-from AT import strategies
-from AT.Metrics.metrics import Metrics
+from DataHandler import HistoricDataHandler, LiveDataHandler
+from Portfolio import Portfolio
+from Risk import SimpleRiskHandler
+from Broker import SimulateExecutionHandler
+import strategies
+from Metrics.metrics import Metrics
 
 import pandas as pd
 import numpy as np
@@ -15,9 +15,9 @@ from tqdm import tqdm
 from itertools import product, repeat
 import multiprocessing as mp
 
-import AT.helper as h
+import helper as h
 
-from AT import settings
+import settings
 
 
 class Backtester:

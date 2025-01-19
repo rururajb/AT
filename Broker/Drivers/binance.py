@@ -1,5 +1,5 @@
 import enums
-from AT import settings
+import settings
 import exceptions
 import time
 import hashlib

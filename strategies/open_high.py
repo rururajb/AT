@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-from AT.event import SignalEvent
+from event import SignalEvent
 
 
 class OpenHigh:

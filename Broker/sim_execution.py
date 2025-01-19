@@ -1,6 +1,6 @@
 # from .event import OrderEvent, FillEvent
-from AT.Broker.orders import *
-from AT.Broker.Fees import SlippageModel, PercentFeeModel
+from Broker.orders import *
+from Broker.Fees import SlippageModel, PercentFeeModel
 
 from collections import deque
 
@@ -13,8 +13,8 @@ import datetime
 import logging
 
 # import enums
-import AT.helper as h
-from AT import settings
+import helper as h
+import settings
 
 
 class SimulateExecutionHandler:

@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 from decimal import Decimal as D
 
-from AT.exceptions import *
+from exceptions import *
 
 
 class Strategy(ABC):

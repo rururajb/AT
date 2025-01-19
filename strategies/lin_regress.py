@@ -1,7 +1,7 @@
 from scipy import stats
 import numpy as np
 
-from AT.strategies import Strategy
+from strategies import Strategy
 
 class LinearRegression(Strategy):
     def __init__(self, period=30, up_slope=1, down_slope=-1):

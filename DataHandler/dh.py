@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 import numpy as np
 
-from AT import settings
+import settings
 
 import datetime as dt
 
@@ -10,7 +10,7 @@ import sys
 
 import logging
 
-from AT.DataHandler.symbol import Symbol
+from DataHandler.symbol import Symbol
 
 
 class DataHandler(ABC):

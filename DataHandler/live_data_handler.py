@@ -9,9 +9,9 @@ import time
 import numpy as np
 import pandas as pd
 
-from AT import settings
+import settings
 
-import AT.helper as h
+import helper as h
 
 class LiveDataHandler(DataHandler):
     def __init__(self):

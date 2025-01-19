@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from AT.enums import side
+from enums import side
 
 @dataclass
 class StopOrder:

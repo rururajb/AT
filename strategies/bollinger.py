@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-from AT.strategies import Strategy
+from strategies import Strategy
 
 # import talib
 

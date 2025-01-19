@@ -8255,7 +8255,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  *             raise ValueError("itemsize <= 0 for cython.array")
  * 
  *         if not isinstance(format, bytes):             # <<<<<<<<<<<<<<
- *             format = format.encode('ASCII')
+ *             format = formencode('ASCII')
  *         self._format = format  # keep a reference to the byte string
  */
   __pyx_t_2 = PyBytes_Check(__pyx_v_format); 
@@ -8265,7 +8265,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
     /* "View.MemoryView":140
  * 
  *         if not isinstance(format, bytes):
- *             format = format.encode('ASCII')             # <<<<<<<<<<<<<<
+ *             format = formencode('ASCII')             # <<<<<<<<<<<<<<
  *         self._format = format  # keep a reference to the byte string
  *         self.format = self._format
  */
@@ -8293,14 +8293,14 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
  *             raise ValueError("itemsize <= 0 for cython.array")
  * 
  *         if not isinstance(format, bytes):             # <<<<<<<<<<<<<<
- *             format = format.encode('ASCII')
+ *             format = formencode('ASCII')
  *         self._format = format  # keep a reference to the byte string
  */
   }
 
   /* "View.MemoryView":141
  *         if not isinstance(format, bytes):
- *             format = format.encode('ASCII')
+ *             format = formencode('ASCII')
  *         self._format = format  # keep a reference to the byte string             # <<<<<<<<<<<<<<
  *         self.format = self._format
  * 
@@ -8315,7 +8315,7 @@ static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __
   __pyx_t_3 = 0;
 
   /* "View.MemoryView":142
- *             format = format.encode('ASCII')
+ *             format = formencode('ASCII')
  *         self._format = format  # keep a reference to the byte string
  *         self.format = self._format             # <<<<<<<<<<<<<<
  * 

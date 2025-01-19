@@ -1,6 +1,6 @@
 from collections import deque, defaultdict
 
-from AT.strategies import Strategy
+from strategies import Strategy
 
 class CombinedStrategies(Strategy):
     def __init__(self, method="all", **kwargs):

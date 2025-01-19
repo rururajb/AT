@@ -1,6 +1,6 @@
 import numpy as np
 
-from AT.strategies import Strategy
+from strategies import Strategy
 
 class PredictiveStrategy(Strategy):
     def __init__(self, period=9):

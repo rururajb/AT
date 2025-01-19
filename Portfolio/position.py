@@ -4,7 +4,7 @@ from dataclasses import dataclass, field
 
 # from .trade import Trade
 
-from AT.enums import trade_type, asset_side, places
+from enums import trade_type, asset_side, places
 
 
 @dataclass

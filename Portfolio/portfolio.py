@@ -1,20 +1,20 @@
-from AT.Portfolio.position import Position
+from Portfolio.position import Position
 # from .trade import Trade
 
 import pandas as pd
 import numpy as np
 from decimal import Decimal as D
 
-from AT.enums import trade_type, asset_side
+from enums import trade_type, asset_side
 
 from collections import deque, defaultdict
 from copy import deepcopy
 
-import AT.helper as h
+import helper as h
 
 # from decimal import Decimal
 
-from AT import settings as settings
+import settings as settings
 
 import logging
 

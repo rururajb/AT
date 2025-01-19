@@ -8,15 +8,15 @@ from collections import OrderedDict, defaultdict
 
 import json
 
-from AT.DataHandler.event import *
-from AT.DataHandler.dh import DataHandler
-from AT.DataHandler.symbol import Symbol
+from DataHandler.event import *
+from DataHandler.dh import DataHandler
+from DataHandler.symbol import Symbol
 
-import AT.helper as h
+import helper as h
 
-import AT.exceptions as exceptions
-import AT.settings as settings
-from AT.symbols import symbols as syms
+import exceptions as exceptions
+import settings as settings
+from symbols import symbols as syms
 
 from datetime import timedelta
 

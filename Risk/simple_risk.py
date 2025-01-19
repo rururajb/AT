@@ -1,7 +1,7 @@
 import numpy as np
 from decimal import Decimal as D
 
-import AT.helper as h
+import helper as h
 
 import logging
 
@@ -11,13 +11,13 @@ except ImportError:
     # talib is a pain to install
     logging.warning("You should install talib.")
 
-from AT import enums 
+import enums 
 
-from AT import settings
+import settings
 
-from AT.Broker.Fees import PercentFeeModel
+from Broker.Fees import PercentFeeModel
 
-from AT import helper as h
+import helper as h
 
 # TODO:
 #  * Reincoporate hrp allocation
